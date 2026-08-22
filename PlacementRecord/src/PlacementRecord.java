@@ -1,34 +1,27 @@
-class MessWallet {
-    private double balance;
+class Course {
+    String code, title;
+    int credits, labCredits;
 
-    MessWallet(double b) {
-        if (b < 0) {
-            balance = 0;
-            System.out.println("Invalid balance");
-        } else
-            balance = b;
+    Course(String c, String t, int cr, int lab) {
+        code = c;
+        title = t;
+        credits = cr;
+        labCredits = lab;
     }
 
-    void topUp(double x) {
-        if (x > 0)
-            balance += x;
+    Course(String c, String t, int cr) {
+        this(c, t, cr, 0);
     }
 
-    void deduct(double x) {
-        if (x <= balance)
-            balance -= x;
-        else
-            System.out.println("Insufficient balance");
-    }
-
-    double getBalance() {
-        return balance;
+    int totalCredits() {
+        return credits + labCredits;
     }
 
     public static void main(String[] args) {
-        MessWallet w = new MessWallet(500);
-        w.topUp(200);
-        w.deduct(1000);
-        System.out.println(w.getBalance());
+        Course a = new Course("21CSC201J", "Data Structures", 4);
+        Course b = new Course("21CSC205L", "DSA Lab", 3, 1);
+
+        System.out.println(a.totalCredits());
+        System.out.println(b.totalCredits());
     }
 }
