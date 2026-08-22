@@ -1,20 +1,34 @@
-class PlacementRecord {
-    String name, company;
-    double pack;
-    PlacementRecord(String n, String c, double p) {
-        name = n;
-        company = c;
-        pack = p;
+class MessWallet {
+    private double balance;
+
+    MessWallet(double b) {
+        if (b < 0) {
+            balance = 0;
+            System.out.println("Invalid balance");
+        } else
+            balance = b;
     }
-    void printRecord() {
-        System.out.println(name + " -> " + company + " @ " + pack + " LPA");
+
+    void topUp(double x) {
+        if (x > 0)
+            balance += x;
     }
+
+    void deduct(double x) {
+        if (x <= balance)
+            balance -= x;
+        else
+            System.out.println("Insufficient balance");
+    }
+
+    double getBalance() {
+        return balance;
+    }
+
     public static void main(String[] args) {
-        PlacementRecord a = new PlacementRecord("Ravi", "TCS", 4.5);
-        PlacementRecord b = new PlacementRecord("Anitha", "Zoho", 6.2);
-        PlacementRecord c = new PlacementRecord("Karthik", "Infosys", 4.0);
-        a.printRecord();
-        b.printRecord();
-        c.printRecord();
+        MessWallet w = new MessWallet(500);
+        w.topUp(200);
+        w.deduct(1000);
+        System.out.println(w.getBalance());
     }
 }
